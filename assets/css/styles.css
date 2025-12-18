@@ -1,0 +1,356 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+	--azulPrincipal: blue;
+	--navbar-height: 100px;
+	--navbar-min-height: 60px;
+	--logo-height: 90px;
+	--logo-min-height: 60px;
+	--nombre-font-size: 2.5rem;
+	--nombre-min-font-size: 1.5rem;
+}
+
+
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////LOGO///////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////*/
+
+.LogoNombre {
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	height: var(--logo-height);
+	transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+}
+.logo {
+	height: var(--logo-height);
+	transition: height 0.3s ease ;
+	animation:pulso 0.5s ease ;
+}
+.Nombres {
+	display: flex;
+	flex-direction: column;
+}
+.Nombre {
+	margin: 0;
+	line-height: 1;
+	display: inline-block;
+	color: var(--azulPrincipal);
+	font-size: var(--nombre-font-size);
+	transition: font-size 0.3s ease;
+}
+.soluciones { 
+	letter-spacing: 4px;
+}
+.tecnologicas {
+	letter-spacing: 1px;
+}
+@keyframes pulso {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	80% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////BARRA NAVEGACION///////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////*/
+
+header  {
+    position: fixed;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: height 0.1s ease, box-shadow 0.1s ease;
+}
+.navbar {  
+    background-color: transparent;
+    transition: height 0.1s ease, box-shadow 0.1s ease;
+}
+#navBar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	width: 100vw;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	top: 0;
+	z-index: 1000;
+	transition: height 0.1s ease, box-shadow 0.1s ease;
+}
+.navbar-toggler {
+    margin-right: 1rem;
+}
+.collapse {
+	justify-content: end;
+	margin-right: 2rem;
+	width: 100vw;
+}
+.nav-link {
+	color: white;
+}
+header.scrolled #navBar {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    position: fixed; /* Fija el navbar a la ventana */
+	background-color: white;
+    text-decoration-color: var(--azulPrincipal);
+}
+header.scrolled .nav-link {
+    color: var(--azulPrincipal);
+}
+header.scrolled .LogoNombre {
+	height: var(--logo-min-height);
+}
+header.scrolled .logo {
+	height: var(--logo-min-height);
+}
+header.scrolled .Nombre {
+	font-size: var(--nombre-min-font-size);
+	letter-spacing: 0px;
+}
+header.scrolled .soluciones { 
+	letter-spacing: 3px;
+}
+header.scrolled .tecnologicas {
+	letter-spacing: 1px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////HERO.VIDEO/////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////*/
+
+#hero {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    overflow: hidden;
+    top: 0;
+}
+#hero video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+/*//////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////SECCIONES///////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////*/
+
+section {
+    width: 100%;
+
+}
+#services{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    height: 40rem;
+    position: relative;
+
+    background: linear-gradient(to bottom, rgba(53, 84, 185, 0.4) 0%, #032db666 100%), url(../imgs/fondo-webs.png);
+    animation: scroll-adjust linear;
+	animation-timeline: view(y);
+    background-size: cover;
+    background-position: initial;
+    font-family: sans-serif;
+}
+@keyframes scroll-adjust {
+    0% {
+		background-position:0 0;
+	}
+	100% {
+		background-position: 0 50%;
+	}
+}
+#shape{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+    width: 100%;
+    padding-top: 10rem;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    border-radius: 0% 0% 100% 100% / 0% 50% 100% 100%;
+    transform: rotate(180deg);
+}
+#circle{  
+    background: linear-gradient(to bottom, rgba(9, 3, 97, 0.4) 100%, #032db666 100%);
+    position: relative;
+
+    transform: rotate(180deg);
+    width: 454px;
+    height: 454px;
+    border: 4px solid var(--azulPrincipal); 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    background-color: transparent;
+    margin-top: 5rem;
+}
+.icono {
+    position: absolute; 
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e74c3c; 
+    border-radius: 50%;
+    color: white;
+    border-color: white;
+    border: 5px;
+    border-style: solid;
+    font-size: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform: matrix(1, 0, 0, 1, -42.5, -42.5);
+    z-index: 9;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.icono:hover {
+    background-color: #c0392b;
+}
+
+/* Posicionamiento de iconos*/
+.icono-1 { top: 0px; left: 221px; }
+.icono-2 { top: 110.5px; left: 411.047px; }
+.icono-3 { top: 331.5px; left: 411.047px; }
+.icono-4 { top: 442px; left: 221px; }
+.icono-5 { top: 331.5px; left: 30.9375px; }
+.icono-6 { top: 110.5px; left: 30.9375px; }
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////NOSOTROS///////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////*/
+
+#nosotros {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35rem;
+    background-color: white;
+    font-family: sans-serif;
+}
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////FOOTER//////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////*/
+
+footer {
+    width: 100%;
+    background-color: rgb(71, 71, 71);
+    height: 33rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    color: wheat;
+}
+#Logo {
+    height: 120px;
+    align-self: center;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 20rem;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+}
+#informacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 1rem;
+}
+#redes {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.red {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(20, 75, 156);
+    border-radius: 100%;
+}
+#derechos {
+    width: 20rem;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 3rem;
+    padding-top: 2rem;
+    transition: all 1s ease;
+}
+
+/*Boton Subir*/
+.boton-subir {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 65px;
+    height: 65px;
+    color: wheat;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 65px;
+    font-size: 24px;
+    text-decoration: none;
+    background-color: var(--princicpal);
+    transition: all 0.5s ease;
+}
+.boton-subir:hover {
+    color: var(--princicpal);
+    background-color: wheat;
+    transform: scale(1.1);
+  }
+
+/*Animacion Aparicion*/
+.aparecer {
+    opacity: 1;
+    transform: translateY(0);
+}
+.desaparecer {
+    opacity: 0;
+    transform: translateY(20px);
+}       
+.transition {
+    transition: all 0.6s ease-out;
+}
