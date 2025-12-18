@@ -71,15 +71,14 @@
 
 header  {
     position: fixed;
-    background-color: transparent;
     top: 0;
     left: 0;
     z-index: 999;
     transition: height 0.1s ease, box-shadow 0.1s ease;
 }
 .navbar {  
-    background-color: transparent;
     transition: height 0.1s ease, box-shadow 0.1s ease;
+
 }
 #navBar {
 	display: flex;
@@ -92,6 +91,8 @@ header  {
 	top: 0;
 	z-index: 1000;
 	transition: height 0.1s ease, box-shadow 0.1s ease;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(255, 255, 255, 0));
+
 }
 .navbar-toggler {
     margin-right: 1rem;
@@ -99,16 +100,14 @@ header  {
 .collapse {
 	justify-content: end;
 	margin-right: 2rem;
-	width: 100vw;
 }
 .nav-link {
 	color: white;
 }
 header.scrolled #navBar {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    position: fixed; /* Fija el navbar a la ventana */
-	background-color: white;
-    text-decoration-color: var(--azulPrincipal);
+    position: fixed;
+	background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255));
 }
 header.scrolled .nav-link {
     color: var(--azulPrincipal);
@@ -125,9 +124,11 @@ header.scrolled .Nombre {
 }
 header.scrolled .soluciones { 
 	letter-spacing: 3px;
+    display: none;
 }
 header.scrolled .tecnologicas {
 	letter-spacing: 1px;
+    display: none;
 }
 
 /*/////////////////////////////////////////////////////////////////////////*/
@@ -256,8 +257,34 @@ section {
     justify-content: center;
     align-items: center;
     height: 35rem;
-    background-color: white;
     font-family: sans-serif;
+    gap: 2rem;
+}
+.logo-nosotros{
+    height: var(--logo-height);
+}
+#code-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.icon{
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: gray;
+    font-size: 2rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform: matrix(1, 0, 0, 1, -42.5, -42.5);
+    z-index: 9;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 /*/////////////////////////////////////////////////////////////////////////*/
