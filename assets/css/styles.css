@@ -8,6 +8,7 @@
 	--navbar-height: 100px;
 	--navbar-min-height: 60px;
 	--logo-height: 90px;
+    --logo-height-section: 20rem;
 	--logo-min-height: 60px;
 	--nombre-font-size: 2.5rem;
 	--nombre-min-font-size: 1.5rem;
@@ -261,7 +262,18 @@ section {
     gap: 2rem;
 }
 .logo-nosotros{
-    height: var(--logo-height);
+    height: var(--logo-height-section);
+}
+#nosotros-text {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #333;
 }
 #code-icons {
     display: flex;
