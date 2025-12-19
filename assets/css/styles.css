@@ -183,13 +183,13 @@ section {
 }
 @keyframes scroll-adjust {
     0% {
-		background-position:100% 0;
+		background-position:0 0%;
 	}
     50% {
-        background-position: 50% 80%;
+        background-position: 0 50%;
     }
 	100% {
-		background-position: 10 50%;
+		background-position: 0 100%;
 	}
 }
 #shape{
@@ -320,11 +320,15 @@ footer {
     align-self: center;
 }
 .logo-nombre{
-    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
+}
+#separador {
+  height: 130px;
+  width: 1px;
+  background-color: #f0f0f0;
 }
 .info {
     display: flex;
@@ -335,6 +339,7 @@ footer {
     padding-top: 3rem;
     padding-bottom: 1rem;
 }
+
 #information {
     display: flex;
     flex-direction: column;
