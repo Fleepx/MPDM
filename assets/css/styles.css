@@ -1,6 +1,9 @@
 * {
     padding: 0;
     margin: 0;
+    
+    font-family: "Roboto", sans-serif;
+    scroll-behavior: smooth
 }
 
 :root {
@@ -30,20 +33,18 @@
 }
 .logo {
 	height: var(--logo-height);
-	transition: height 0.3s ease ;
+	transition: height 0.4s ease ;
 	animation:pulso 0.5s ease ;
 }
 .Nombres {
-	display: flex;
 	flex-direction: column;
+    color: transparent;
 }
 .Nombre {
 	margin: 0;
 	line-height: 1;
-	display: inline-block;
-	color: var(--azulPrincipal);
 	font-size: var(--nombre-font-size);
-	transition: font-size 0.3s ease;
+	transition: font-size 0.4s ease;
 }
 .soluciones { 
 	letter-spacing: 4px;
@@ -122,6 +123,8 @@ header.scrolled .logo {
 header.scrolled .Nombre {
 	font-size: var(--nombre-min-font-size);
 	letter-spacing: 0px;
+    color: var(--azulPrincipal);
+    display: flex;
 }
 header.scrolled .soluciones { 
 	letter-spacing: 3px;
@@ -180,10 +183,13 @@ section {
 }
 @keyframes scroll-adjust {
     0% {
-		background-position:0 0;
+		background-position:100% 0;
 	}
+    50% {
+        background-position: 50% 80%;
+    }
 	100% {
-		background-position: 0 50%;
+		background-position: 10 50%;
 	}
 }
 #shape{
@@ -329,11 +335,13 @@ footer {
     padding-top: 3rem;
     padding-bottom: 1rem;
 }
-#informacion {
+#information {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    gap: 1rem;
+    padding: 0;
+    margin: 0;
+;
 }
 #redes {
     display: flex;
@@ -382,19 +390,13 @@ footer {
 
 
 @media (min-width: 992px) {
-    #redes {
-        grid-area: "redes";
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
     footer {
-        height: 19rem;
+        height: 100%;
     }
     .info {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items:flex-start;
         max-width: 1500px;
         width: 100%;
@@ -406,5 +408,11 @@ footer {
         flex-direction: row;
         gap: 0.8rem;
         pointer-events: none;
+    }
+    #redes {
+        grid-area: "redes";
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 }
