@@ -200,7 +200,7 @@ section {
     transform: rotate(180deg);
 }
 #circle{  
-    background: linear-gradient(to bottom, rgba(9, 3, 97, 0.4) 100%, #032db666 100%);
+    background: linear-gradient(to bottom, #1ca80966 1000%, #e0199466 100%);
     position: relative;
 
     transform: rotate(180deg);
@@ -211,7 +211,6 @@ section {
     display: flex;
     justify-content: center;
     align-items: top;
-    background-color: transparent;
     margin-top: 5rem;
 }
 .icono {
@@ -221,7 +220,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e74c3c; 
+    background-color: var(--azulPrincipal); 
     border-radius: 50%;
     color: white;
     border-color: white;
@@ -237,7 +236,7 @@ section {
 }
 
 .icono:hover {
-    background-color: #c0392b;
+    background-color: rgb(13, 13, 104);
 }
 
 /* Posicionamiento de iconos*/
@@ -272,16 +271,17 @@ section {
     align-items: center;
     gap: 1rem;
     font-size: 1.2rem;
-    line-height: 1.5;
     color: #333;
 }
 #code-icons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 1rem;
     width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 .icon{
     width: 5rem;
@@ -293,10 +293,6 @@ section {
     color: gray;
     font-size: 2rem;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    transform: matrix(1, 0, 0, 1, -42.5, -42.5);
-    z-index: 9;
-    overflow-x: hidden;
-    overflow-y: hidden;
 }
 
 /*/////////////////////////////////////////////////////////////////////////*/
@@ -306,16 +302,23 @@ section {
 footer {
     width: 100%;
     background-color: rgb(71, 71, 71);
-    height: 33rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
     color: wheat;
+    padding-bottom: 2rem;
 }
 #Logo {
     height: 120px;
     align-self: center;
+}
+.logo-nombre{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
 }
 .info {
     display: flex;
@@ -334,8 +337,9 @@ footer {
 }
 #redes {
     display: flex;
+    justify-content: center;
     flex-direction: row;
-    gap: 15px;
+    gap: 2rem;
 }
 .red {
     display: flex;
@@ -347,39 +351,12 @@ footer {
     border-radius: 100%;
 }
 #derechos {
-    width: 20rem;
-}
-.container {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 3rem;
-    padding-top: 2rem;
-    transition: all 1s ease;
+    justify-content: center;
 }
 
-/*Boton Subir*/
-.boton-subir {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 65px;
-    height: 65px;
-    color: wheat;
-    border: none;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 65px;
-    font-size: 24px;
-    text-decoration: none;
-    background-color: var(--princicpal);
-    transition: all 0.5s ease;
-}
-.boton-subir:hover {
-    color: var(--princicpal);
-    background-color: wheat;
-    transform: scale(1.1);
-  }
+
 
 /*Animacion Aparicion*/
 .aparecer {
@@ -392,4 +369,42 @@ footer {
 }       
 .transition {
     transition: all 0.6s ease-out;
+}
+
+
+
+
+
+
+/*/////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////MEDIA RES//////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////*/
+
+
+@media (min-width: 992px) {
+    #redes {
+        grid-area: "redes";
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    footer {
+        height: 19rem;
+    }
+    .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items:flex-start;
+        max-width: 1500px;
+        width: 100%;
+        padding: 2rem 5rem;
+        color: wheat;
+    }
+    .info .logo-nombre {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+        pointer-events: none;
+    }
 }
