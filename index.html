@@ -118,8 +118,100 @@
                 <div class="icon"><i class="fa-brands fa-ubuntu"></i></div>
                 <div class="icon"><i class="fa-solid fa-database"></i></div>
         </section>
-        <section id="solutions">
-            3.-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum itaque nulla molestiae sequi optio! Provident, commodi ex beatae eaque earum minima pariatur tempora reiciendis in culpa ipsa, illo recusandae consequatur.</section>
+        <!-- Sección de Contacto -->
+        <section id="contacto" class="contact-section">
+            <div class="contact-container">
+
+                <div class="contact-content">
+                    <!-- Formulario -->
+                    <div class="contact-form-wrapper">
+                        <h1>CONTACTO</h1>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        id="nombre" 
+                                        name="nombre" 
+                                        required
+                                        placeholder="Nombre y Apellido"
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        id="empresa" 
+                                        name="empresa"
+                                        placeholder="Empresa"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="email" 
+                                        required
+                                        placeholder="Email"
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <input 
+                                        type="tel" 
+                                        id="telefono" 
+                                        name="telefono"
+                                        placeholder="Teléfono"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea 
+                                    id="mensaje" 
+                                    name="mensaje" 
+                                    rows="1" 
+                                    required
+                                    placeholder="Cuéntanos sobre tu proyecto, necesidades, objetivos y plazos..."
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <span class="btn-text">Enviar Mensaje</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+
+                            <div id="formMessage" class="form-message"></div>
+                        </form>
+                    </div>
+
+                <!-- Información de contacto con Google Maps -->
+                <div class="contact-info">
+                    <!-- Google Maps -->
+                    <div class="map-container">
+                        <!-- Reemplaza YOUR_GOOGLE_MAPS_EMBED_URL con tu URL de Google Maps -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.4828808854995!2d-70.57432478763671!3d-33.41065299536622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cede2cf957e3%3A0x2fec00a5227f5e04!2sLa%20Capitan%C3%ADa%2080%2C%207580009%20Las%20Condes%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1766246358536!5m2!1ses!2scl"
+                        width="600"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decoración de fondo -->
+            <div class="contact-decoration">
+                <div class="decoration-circle circle-1"></div>
+                <div class="decoration-circle circle-2"></div>
+                <div class="decoration-circle circle-3"></div>
+            </div>
+        </section>
         <section id="proyects">
             4.-Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ipsa fugit voluptatibus, beatae neque nam veniam quae provident atque suscipit corporis expedita dolorem dolor iure alias quo illo pariatur quod.
         </section>
@@ -160,6 +252,7 @@
 
     <script src="./assets/javaScript/AnimacionMenu.js"></script>
     <script src="./assets/javaScript/Soluciones.js"></script>
+    <script src="./assets/javaScript/ContactForm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
