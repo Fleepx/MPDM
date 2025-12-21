@@ -233,7 +233,7 @@ section {
     align-items: center;
     height: 20rem;
     width: 100%;
-    padding-top: 10rem;
+    padding-top: 3rem;
     bottom: 0;
     left: 0;
     background-color: var(--background-grey);
@@ -468,32 +468,276 @@ section {
 /*//////////////////////NOSOTROS///////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////*/
 
+/* ========== SECCIÓN NOSOTROS ========== */
 #nosotros {
-    width: 100%;
-    padding: 7rem 8rem 0rem 8rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-
-    font-family: sans-serif;
-    gap: 2rem;
+    justify-content: center;
+    gap: 5rem;
+    padding-top: 12rem;
+    max-width: 100%;
+    margin: 0 auto;
     background-color: var(--background-grey);
 }
-.logo-nosotros{
-    height: var(--logo-height-section);
+
+/* ========== LOGO (TU IMAGEN) ========== */
+.logo-nosotros {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+    opacity: 0;
+    transform: translateX(-80px);
+    animation: logoSlideIn 1.2s ease-out 0.3s forwards;
 }
+
+/* Animación de entrada horizontal del logo */
+@keyframes logoSlideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animación sutil continua del logo */
+.logo-nosotros {
+    animation: 
+        logoSlideIn 1.2s ease-out 0.3s forwards,
+        logoFloat 4s ease-in-out 1.5s infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(5px) translateY(-5px);
+    }
+}
+
+/* ========== TEXTO NOSOTROS ========== */
 #nosotros-text {
-    max-width: 600px;
-    min-width: 300px;
+    flex: 1;
+    max-width: 650px;
+    padding: 1rem;
+}
+
+#nosotros-text h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+}
+
+/* ========== ABOUT DESCRIPTION (NUEVO TEXTO) ========== */
+.about-description {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1rem;
-    font-size: 1.2rem;
-    color: #333;
+    gap: 1.5rem;
+}
+
+.about-description p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    position: relative;
+    padding-left: 1.5rem;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+/* Línea decorativa lateral azul */
+.about-description p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--azulPrincipal, #5234a5), transparent);
+    border-radius: 2px;
+}
+
+/* Animación escalonada de los párrafos */
+.main-message {
+    font-size: 1.25rem !important;
+    font-weight: 500;
+    color: #1a1a1a !important;
+    animation: fadeInSlide 0.8s ease-out 0.7s forwards;
+}
+
+.main-message::before {
+    animation: lineGrow 0.6s ease-out 0.9s forwards;
+}
+
+.detail-message {
+    animation: fadeInSlide 0.8s ease-out 0.9s forwards;
+}
+
+.detail-message::before {
+    animation: lineGrow 0.6s ease-out 1.1s forwards;
+}
+
+.trust-message {
+    animation: fadeInSlide 0.8s ease-out 1.1s forwards;
+}
+
+.trust-message::before {
+    animation: lineGrow 0.6s ease-out 1.3s forwards;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInSlide {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes lineGrow {
+    to {
+        height: calc(100% - 1rem);
+    }
+}
+
+/* Palabras en negrita (strong) con color azul */
+.about-description strong {
+    color: var(--azulPrincipal, #5234a5);
+    font-weight: 700;
+}
+
+/* Efecto hover sutil en palabras clave */
+.about-description strong:hover {
+    text-shadow: 0 0 8px rgba(82, 52, 165, 0.3);
+    letter-spacing: 0.02em;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    #nosotros {
+        gap: 4rem;
+    }
+    
+    .logo-nosotros {
+        max-width: 280px;
+    }
+}
+
+/* Tablet pequeña */
+@media (max-width: 768px) {
+    #nosotros {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 5rem 2rem;
+    }
+    
+    .logo-nosotros {
+        max-width: 250px;
+        transform: translateX(-60px);
+    }
+    
+    @keyframes logoSlideIn {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    #nosotros-text h1 {
+        text-align: center;
+    }
+    
+    .about-description p {
+        font-size: 1rem;
+    }
+    
+    .main-message {
+        font-size: 1.15rem !important;
+    }
+}
+
+/* Móvil */
+@media (max-width: 640px) {
+    #nosotros {
+        padding: 4rem 1.5rem;
+        gap: 2.5rem;
+    }
+    
+    .logo-nosotros {
+        max-width: 200px;
+        transform: translateX(-40px);
+    }
+    
+    #nosotros-text h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-description {
+        gap: 1.25rem;
+    }
+    
+    .about-description p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        padding-left: 1rem;
+    }
+    
+    .about-description p::before {
+        width: 3px;
+    }
+    
+    .main-message {
+        font-size: 1.05rem !important;
+    }
+}
+
+/* ========== ANIMACIÓN ACTIVADA POR SCROLL ========== */
+#nosotros.in-view .logo-nosotros {
+    animation: 
+        logoSlideIn 1.2s ease-out forwards,
+        logoFloat 4s ease-in-out 1.2s infinite;
+}
+
+#nosotros.in-view .main-message {
+    animation: fadeInSlide 0.8s ease-out 0.2s forwards;
+}
+
+#nosotros.in-view .detail-message {
+    animation: fadeInSlide 0.8s ease-out 0.4s forwards;
+}
+
+#nosotros.in-view .trust-message {
+    animation: fadeInSlide 0.8s ease-out 0.6s forwards;
+}
+
+/* ========== ACCESIBILIDAD ========== */
+@media (prefers-reduced-motion: reduce) {
+    .logo-nosotros,
+    .main-message,
+    .detail-message,
+    .trust-message,
+    #nosotros-text h1 {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    .about-description p::before {
+        height: calc(100% - 1rem);
+    }
 }
 #code-icons {
     display: flex;
@@ -502,8 +746,7 @@ section {
     flex-wrap: nowrap;
     gap: 1rem;
     width: 100%;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding: 0rem 2rem;
     background: linear-gradient(to bottom, var(--background-grey) 0%, #fcfbfb 100%);
 }
 .icon{
@@ -528,6 +771,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 8rem 0rem;
 }
 .contact-section {
     position: relative;
@@ -1020,7 +1264,7 @@ footer {
 
 @media (max-width: 640px) {
     .contact-section {
-        padding: 5rem 1.5rem;
+        padding: 5rem 0px;
     }
     
     .contact-header {
