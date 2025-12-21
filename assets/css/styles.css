@@ -172,7 +172,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: end;
-    height: 40rem;
+    min-height: 40rem;
     position: relative;
 
     background: linear-gradient(to bottom, rgba(82, 52, 165, 0.507) 0%, #fcfbfbbd 100%), url(../imgs/fondo-webs.png);
@@ -197,7 +197,6 @@ section {
     background: linear-gradient(to bottom, rgba(82, 52, 165, 0.507) 0%, #fcfbfb 100%);
     position: relative;
 
-    transform: rotate(180deg);
     width: 454px;
     height: 454px;
     border: 4px solid var(--azulPrincipal); 
@@ -205,7 +204,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: top;
-    margin-top: 5rem;
+    margin-bottom: 20rem;
 }
 #text-circle{
     display: flex;
@@ -238,8 +237,7 @@ section {
     bottom: 0;
     left: 0;
     background-color: var(--background-grey);
-    border-radius: 0% 0% 100% 100% / 0% 50% 100% 100%;
-    transform: rotate(180deg);
+    border-radius: 100% 100% 0% 0% / 100% 100% 0% 0%;
 }
 .icono {
     position: absolute; 
@@ -274,6 +272,197 @@ section {
 .icono-4 { top: 442px; left: 221px; }
 .icono-5 { top: 331.5px; left: 30.9375px; }
 .icono-6 { top: 110.5px; left: 30.9375px; }
+
+/* ========== TARJETAS MÓVIL (Ocultas por defecto) ========== */
+.mobile-cards {
+    display: none;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem 1.5rem;
+}
+
+.service-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(82, 52, 165, 0.1);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-card:hover {
+    border-color: var(--azulPrincipal);
+    box-shadow: 0 8px 25px rgba(82, 52, 165, 0.2);
+    transform: translateY(-5px);
+}
+
+.card-icon-mobile {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--azulPrincipal), rgb(13, 13, 104));
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(82, 52, 165, 0.3);
+}
+
+.card-icon-mobile i {
+    font-size: 2rem;
+    color: white;
+}
+
+.card-content-mobile h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--azulPrincipal);
+    margin-bottom: 0.75rem;
+}
+
+.card-content-mobile p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablet - Reducir tamaño del círculo */
+@media (max-width: 768px) {
+    #circle {
+        width: 380px;
+        height: 380px;
+    }
+    
+    .icono {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+    
+    .icono-1 { top: 0px; left: 186px; }
+    .icono-2 { top: 92.5px; left: 343.8px; }
+    .icono-3 { top: 277.5px; left: 343.8px; }
+    .icono-4 { top: 370px; left: 186px; }
+    .icono-5 { top: 277.5px; left: 25.95px; }
+    .icono-6 { top: 92.5px; left: 25.95px; }
+    
+    #text-circle {
+        padding: 1rem;
+    }
+    
+    #title-circle {
+        font-size: 1.2rem;
+    }
+    
+    #description-circle {
+        font-size: 0.9rem;
+        padding: 0 1.5rem;
+    }
+}
+
+/* Móvil - Cambiar a tarjetas */
+@media (max-width: 640px) {
+    #services {
+        min-height: auto;
+        align-items: center;
+    }
+    
+    #shape {
+        min-height: auto;
+        height: auto;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        border-radius: 0;
+        position: relative;
+        background: linear-gradient(to bottom, rgba(82, 52, 165, 0.507) 0%, #fcfbfbbd 100%), url(../imgs/fondo-webs.png);
+    }
+    
+    /* Ocultar círculo en móvil */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    /* Mostrar tarjetas en móvil */
+    .mobile-cards {
+        display: flex;
+    }
+    
+    .service-card {
+        padding: 1.25rem;
+    }
+    
+    .card-icon-mobile {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-icon-mobile i {
+        font-size: 1.7rem;
+    }
+    
+    .card-content-mobile h3 {
+        font-size: 1.2rem;
+    }
+    
+    .card-content-mobile p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Móvil pequeño - Ajustes adicionales */
+@media (max-width: 480px) {
+    .mobile-cards {
+        padding: 1.5rem 1rem;
+        gap: 1.25rem;
+    }
+    
+    .service-card {
+        padding: 1rem;
+    }
+    
+    .card-icon-mobile {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .card-icon-mobile i {
+        font-size: 1.5rem;
+    }
+    
+    .card-content-mobile h3 {
+        font-size: 1.1rem;
+    }
+    
+    .card-content-mobile p {
+        font-size: 0.85rem;
+    }
+    #shape {
+        min-height: auto;   
+        height: auto;       
+        padding-top: 3rem;  
+        padding-bottom: 3rem;
+        position: relative;  
+    }
+    #services {
+        position: relative;
+    }
+
+    .mobile-cards {
+        position: relative; 
+        z-index: 10;
+    }
+}
 
 /*/////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////NOSOTROS///////////////////////////////////////////*/
