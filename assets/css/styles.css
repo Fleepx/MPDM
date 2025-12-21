@@ -815,7 +815,10 @@ footer {
         padding: 2rem;
         width: 500px;
     }
-    
+    .map-container {
+        width: 500px;
+        height: 450px;
+    }
     .form-row {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -838,6 +841,10 @@ footer {
     .contact-form-wrapper {
         width: 400px;
         padding: 1.5rem;
+    }
+    .map-container {
+        width: 400px;
+        height: 450px;
     }
     
     .btn-submit {
