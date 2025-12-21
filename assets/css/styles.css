@@ -281,7 +281,7 @@ section {
 
 #nosotros {
     width: 100%;
-    padding: 5rem 10rem 0rem 10rem;
+    padding: 7rem 8rem 0rem 8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -296,7 +296,8 @@ section {
     height: var(--logo-height-section);
 }
 #nosotros-text {
-    width: 40%;
+    max-width: 600px;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -347,10 +348,12 @@ section {
 }
 
 .contact-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    margin: 0;
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     position: relative;
-    z-index: 2;
 }
 
 /* Header */
@@ -801,6 +804,7 @@ footer {
         justify-content: space-around;
         align-items: start;
         flex-direction: row;
+        gap: 2rem;
     }
     .contact-content {
         grid-template-columns: 1fr;
@@ -809,6 +813,7 @@ footer {
     
     .contact-form-wrapper {
         padding: 2rem;
+        width: 500px;
     }
     
     .form-row {
@@ -831,6 +836,7 @@ footer {
     }
     
     .contact-form-wrapper {
+        width: 400px;
         padding: 1.5rem;
     }
     
