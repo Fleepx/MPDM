@@ -616,11 +616,6 @@ section {
     font-weight: 700;
 }
 
-/* Efecto hover sutil en palabras clave */
-.about-description strong:hover {
-    text-shadow: 0 0 8px rgba(82, 52, 165, 0.3);
-    letter-spacing: 0.02em;
-}
 
 /* ========== RESPONSIVE ========== */
 
