@@ -100,7 +100,9 @@ header  {
 }
 .navbar-toggler {
     margin-right: 1rem;
+    background: linear-gradient(to bottom, rgb(245, 243, 243), rgba(245, 243, 243, 0.548));
 }
+
 .collapse {
 	justify-content: end;
 	margin-right: 2rem;
