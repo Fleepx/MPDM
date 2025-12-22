@@ -8,6 +8,7 @@
 
 :root {
 	--azulPrincipal: rgba(24, 24, 138, 0.938);
+    --tituloNosotros: #b3350e;
 	--navbar-height: 100px;
 	--navbar-min-height: 60px;
 	--logo-height: 90px;
@@ -474,10 +475,68 @@ section {
     align-items: center;
     justify-content: center;
     gap: 5rem;
-    padding-top: 12rem;
+    padding-top: 5rem;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0;
     background-color: var(--background-grey);
+}
+/* ========== TYPEWRITER ANIMATION ========== */
+#nosotros-text h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--tituloNosotros);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out 0.5s forwards;
+    min-height: 1.2em; /* Evita que salte al cambiar texto */
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.typewriter-text {
+    display: inline-block;
+    min-width: 20px;
+}
+
+/* Cursor parpadeante */
+.typewriter-cursor {
+    display: inline-block;
+    color: var(--tituloNosotros);
+    animation: blink 1s step-end infinite;
+    font-weight: 400;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    #nosotros-text h1 {
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    #nosotros-text h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
 /* ========== LOGO (TU IMAGEN) ========== */
@@ -735,6 +794,10 @@ section {
         height: calc(100% - 1rem);
     }
 }
+/*/////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////ICONOS CODIGO//////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////*/
+
 #code-icons {
     display: flex;
     justify-content: center;
@@ -742,7 +805,8 @@ section {
     flex-wrap: nowrap;
     gap: 1rem;
     width: 100%;
-    padding: 0rem 2rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
     background: linear-gradient(to bottom, var(--background-grey) 0%, #fcfbfb 100%);
 }
 .icon{
@@ -1169,25 +1233,27 @@ footer {
 }
 .info {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
     gap: 2rem;
-    width: 20rem;
+    width: 100%;
     padding-top: 3rem;
     padding-bottom: 1rem;
 }
 
 #information {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: start;
+    gap: 6rem;
     padding: 0;
     margin: 0;
 }
 #redes {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     gap: 2rem;
 }
 .red {
@@ -1224,6 +1290,16 @@ footer {
 /*//////////////////////MEDIA RES//////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////*/
 
+@media (max-width: 1350px) {
+    .contact-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
 @media (max-width: 1024px) {
     #nosotros {
         width: 100%;
@@ -1231,14 +1307,6 @@ footer {
         padding: 2rem 2rem;
         align-items: center;
         flex-direction: column;
-    }
-    #contacto {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        align-items: start;
-        flex-direction: row;
-        gap: 2rem;
     }
     .contact-content {
         grid-template-columns: 1fr;
@@ -1304,6 +1372,12 @@ footer {
         flex-direction: row;
         gap: 0.8rem;
         pointer-events: none;
+    }
+    #information {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
     }
     #redes {
         grid-area: "redes";
