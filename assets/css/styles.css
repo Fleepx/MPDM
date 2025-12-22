@@ -519,7 +519,8 @@ section {
 #nosotros-text {
     flex: 1;
     max-width: 650px;
-    padding: 1rem;
+    padding: 0rem 1rem;
+    padding-bottom: 1rem;
 }
 
 #nosotros-text h1 {
@@ -746,7 +747,6 @@ section {
 }
 .icon{
     width: 5rem;
-    height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1183,7 +1183,6 @@ footer {
     justify-content: start;
     padding: 0;
     margin: 0;
-;
 }
 #redes {
     display: flex;
@@ -1225,7 +1224,14 @@ footer {
 /*//////////////////////MEDIA RES//////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////*/
 
-@media (max-width: 1330px) {
+@media (max-width: 1024px) {
+    #nosotros {
+        width: 100%;
+        display: flex;
+        padding: 2rem 2rem;
+        align-items: center;
+        flex-direction: column;
+    }
     #contacto {
         width: 100%;
         display: flex;
@@ -1254,8 +1260,58 @@ footer {
     .contact-info {
         gap: 1rem;
     }
+    .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items:center;
+        width: 100%;
+        padding: 5rem 3rem;
+        color: wheat;
+        gap: 2rem;
+    }
+    #redes {
+        grid-area: "redes";
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 }
 
+@media (max-width: 992px) {
+    #nosotros {
+        width: 100%;
+        display: flex;
+        padding: 2rem 2rem;
+        align-items: center;
+        flex-direction: column;
+    }
+    footer {
+        height: 100%;
+    }
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items:center;
+        width: 100%;
+        padding: 5rem 3rem;
+        color: wheat;
+        gap: 2rem;
+    }
+    .info .logo-nombre {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+        pointer-events: none;
+    }
+    #redes {
+        grid-area: "redes";
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+    }
+}
 
 @media (max-width: 640px) {
     .contact-section {
@@ -1267,11 +1323,11 @@ footer {
     }
     
     .contact-form-wrapper {
-        width: 400px;
+        width: 350px;
         padding: 1.5rem;
     }
     .map-container {
-        width: 400px;
+        width: 350px;
         height: 450px;
     }
     
@@ -1283,39 +1339,33 @@ footer {
     .social-icons {
         justify-content: center;
     }
-}
-
-@media (min-width: 992px) {
-    #nosotros {
-        width: 100%;
-        display: flex;
-        
-        align-items: start;
-        flex-direction: row;
-    }
-    footer {
-        height: 100%;
-    }
     .info {
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items:flex-start;
-        max-width: 1500px;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
         width: 100%;
         padding: 2rem 5rem;
         color: wheat;
     }
-    .info .logo-nombre {
-        display: flex;
-        flex-direction: row;
-        gap: 0.8rem;
-        pointer-events: none;
-    }
     #redes {
         grid-area: "redes";
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        flex-direction: row;
         gap: 15px;
+    }
+    #nosotros {
+        width: 100%;
+        display: flex;
+        padding: 0rem 2rem;
+        padding-top: 3rem;
+        align-items: center;
+        flex-direction: column;
+    }
+    #code-icons {
+        gap: 0.5rem;
+        padding: 0rem 1rem;
+        padding-top: 1rem;
     }
 }
