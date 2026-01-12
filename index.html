@@ -24,7 +24,7 @@
         <div class="container-fluid" id="navBar">
 
 
-            <!-- Logo y Nombre -->
+    <!-- Logo y Nombre -->
             <div class="LogoNombre">
                 <div class="slogan">
                 </div>
@@ -39,12 +39,12 @@
                     <h1 class="Nombre mpdm">MPDM</h1>
                 </div>
             </div>
-            <!-- Botón Hamburguesa w991px-->
+    <!-- Botón Hamburguesa w991px-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <!-- Menú de Navegación -->
+    <!-- Menú de Navegación -->
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ">
                 <a class="nav-link" aria-current="page" href="#top">Inicio</a>
@@ -60,23 +60,27 @@
     </header>
 
     <main>
-            <!-- Video Hero -->
+    <!-- Video Hero -->
         <div id="hero">
             <video       
-            id="heroVideo"                
+            id="heroVideo"  
+            ffmpeg               
             autoplay                
             muted                
             loop                
             playsinline
+            scale=1920:1080
             poster="assets/imgs/poster.jpg"            
             class="background-video"            
-            >            
+            >      
+               
                 <source src="assets/videos/Hotel_Sur-1.mp4" 
                     type="video/mp4">
             Tu navegador no soporta el elemento de video.
             </video>
+            <div><h1>hello</h1></div>   
         </div>
-        <!-- Sección de Servicios -->
+    <!-- Sección de Servicios -->
         <section id="services">
             <div id="shape">
                 <!-- CÍRCULO INTERACTIVO (Desktop - más de 640px) -->
@@ -157,7 +161,7 @@
                 </div>
             </div>
         </section>
-        <!-- Nosotros -->
+    <!-- Nosotros -->
         <section id="nosotros">
             <div>
                 <img
@@ -186,7 +190,7 @@
                     </div>
             </div>
         </section>
-            <!-- Iconos Lenguajes -->
+    <!-- Iconos Lenguajes -->
         <section id="code-icons">
                 <div class="icon"><i class="fa-brands fa-wordpress"></i></div>
                 <div class="icon"><i class="fa-brands fa-java"></i></div>
@@ -196,7 +200,11 @@
                 <div class="icon"><i class="fa-brands fa-ubuntu"></i></div>
                 <div class="icon"><i class="fa-solid fa-database"></i></div>
         </section>
-        <!-- Sección de Contacto -->
+    <!-- Portafolio -->
+         <section class="portfolio-container">
+            <div></div>
+         </section>
+    <!-- Sección de Contacto -->
         <section id="contacto" class="contact-section">
             <div class="contact-container">
 
@@ -290,6 +298,7 @@
                 <div class="decoration-circle circle-3"></div>
             </div>
         </section>
+
     </main>
     <footer id="contact">
         <div class="info">
