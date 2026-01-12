@@ -1267,7 +1267,10 @@ footer {
     width: 50px;
     background-color: rgb(20, 75, 156);
     border-radius: 100%;
+    all: unset;
+    cursor: pointer;
 }
+
 #derechos {
     width: 100%;
     display: flex;

@@ -27,9 +27,12 @@ const servicios = {
 };
 
 // ========== VARIABLES GLOBALES ==========
-let iconoActivo = null; // Guarda el último icono en el que se hizo click
-let hoverActivo = false; // Indica si hay un hover activo
-let enClick = false; // Nueva variable para detectar cuando estamos en medio de un click
+let iconoActivo = null;
+let hoverActivo = false;
+let enClick = false;
+let autoRotateInterval = null;
+let autoRotateEnabled = true;
+let currentAutoIndex = 0;
 
 // Elementos del DOM
 const iconos = document.querySelectorAll('.icono');
@@ -38,8 +41,8 @@ const descripcionCirculo = document.getElementById('description-circle');
 
 // Guardar el contenido inicial
 const contenidoInicial = {
-    titulo: tituloCirculo.textContent,
-    descripcion: descripcionCirculo.textContent
+    titulo: servicios['icono-1'].titulo,
+    descripcion: servicios['icono-1'].descripcion
 };
 
 // ========== FUNCIÓN PARA CAMBIAR CONTENIDO ==========
@@ -48,7 +51,6 @@ function cambiarContenido(clase, conAnimacion = true) {
     
     if (claseIcono && servicios[claseIcono]) {
         if (conAnimacion) {
-            // CON animación (solo para hover)
             tituloCirculo.style.opacity = '0';
             descripcionCirculo.style.opacity = '0';
             
@@ -60,7 +62,6 @@ function cambiarContenido(clase, conAnimacion = true) {
                 descripcionCirculo.style.opacity = '1';
             }, 200);
         } else {
-            // SIN animación (para click)
             tituloCirculo.textContent = servicios[claseIcono].titulo;
             descripcionCirculo.textContent = servicios[claseIcono].descripcion;
         }
@@ -70,33 +71,82 @@ function cambiarContenido(clase, conAnimacion = true) {
 // ========== FUNCIÓN PARA RESTAURAR CONTENIDO ==========
 function restaurarContenido() {
     if (iconoActivo) {
-        // Restaurar al activo sin animación
         tituloCirculo.textContent = servicios[iconoActivo].titulo;
         descripcionCirculo.textContent = servicios[iconoActivo].descripcion;
     } else {
-        // Restaurar al inicial sin animación
         tituloCirculo.textContent = contenidoInicial.titulo;
         descripcionCirculo.textContent = contenidoInicial.descripcion;
     }
 }
 
+// ========== AUTO-ROTACIÓN ==========
+function startAutoRotate() {
+    if (autoRotateInterval) {
+        clearInterval(autoRotateInterval);
+    }
+    
+    autoRotateInterval = setInterval(() => {
+        // Solo rotar si no hay hover activo y no hay click reciente
+        if (!hoverActivo && autoRotateEnabled) {
+            const iconosArray = Array.from(iconos);
+            
+            // Remover active de todos
+            iconosArray.forEach(i => {
+                i.classList.remove('active');
+                i.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5)';
+                i.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            });
+            
+            // Siguiente icono
+            currentAutoIndex = (currentAutoIndex + 1) % iconosArray.length;
+            const currentIcono = iconosArray[currentAutoIndex];
+            
+            // Activar el icono actual
+            currentIcono.classList.add('active');
+            currentIcono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5) scale(1.15)';
+            currentIcono.style.boxShadow = '0 4px 20px rgba(82, 52, 165, 0.7)';
+            
+            // Cambiar contenido
+            const claseIcono = Array.from(currentIcono.classList).find(c => c.startsWith('icono-'));
+            iconoActivo = claseIcono;
+            cambiarContenido(currentIcono.classList, true);
+        }
+    }, 2000); // Cada 2 segundos
+}
+
+function stopAutoRotate() {
+    if (autoRotateInterval) {
+        clearInterval(autoRotateInterval);
+        autoRotateInterval = null;
+    }
+}
+
+function pauseAutoRotate() {
+    autoRotateEnabled = false;
+}
+
+function resumeAutoRotate() {
+    autoRotateEnabled = true;
+}
+
 // ========== EVENT LISTENERS ==========
 iconos.forEach(icono => {
-    // Agregar transición suave al título y descripción
     tituloCirculo.style.transition = 'opacity 0.3s ease';
     descripcionCirculo.style.transition = 'opacity 0.3s ease';
     
-    // MOUSEDOWN - Se dispara ANTES del click
+    // MOUSEDOWN
     icono.addEventListener('mousedown', () => {
         enClick = true;
     });
     
-    // CLICK - Cuando se hace click
+    // CLICK
     icono.addEventListener('click', () => {
+        // Pausar auto-rotación por 6 segundos después del click
+        pauseAutoRotate();
+        
         // Remover clase 'active' de todos los iconos
         iconos.forEach(i => {
             i.classList.remove('active');
-            // Restaurar tamaño normal de todos los iconos
             i.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5)';
             i.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
         });
@@ -108,31 +158,40 @@ iconos.forEach(icono => {
         const claseIcono = Array.from(icono.classList).find(c => c.startsWith('icono-'));
         iconoActivo = claseIcono;
         
+        // Actualizar el índice de auto-rotación
+        currentAutoIndex = Array.from(iconos).indexOf(icono);
+        
         // Cambiar contenido SIN animación
         cambiarContenido(icono.classList, false);
         
-        // Efecto visual de click (escala pequeña y luego grande)
+        // Efecto visual de click
         icono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5) scale(0.95)';
         setTimeout(() => {
             icono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5) scale(1.15)';
-            // Resetear el flag de click después de un momento
             setTimeout(() => {
                 enClick = false;
             }, 50);
         }, 100);
+        
+        // Reanudar auto-rotación después de 6 segundos
+        setTimeout(() => {
+            resumeAutoRotate();
+        }, 6000);
     });
     
     // HOVER - Cuando el mouse entra
     icono.addEventListener('mouseenter', () => {
-        // NO hacer nada si estamos en medio de un click
         if (enClick) return;
         
         hoverActivo = true;
         
-        // Cambiar contenido CON animación (solo si NO estamos haciendo click)
+        // Pausar auto-rotación temporalmente durante hover
+        pauseAutoRotate();
+        
+        // Cambiar contenido CON animación
         cambiarContenido(icono.classList, true);
         
-        // Agregar efecto visual al icono
+        // Efecto visual al icono
         icono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5) scale(1.15)';
         icono.style.boxShadow = '0 4px 15px rgba(82, 52, 165, 0.5)';
     });
@@ -141,11 +200,12 @@ iconos.forEach(icono => {
     icono.addEventListener('mouseleave', () => {
         hoverActivo = false;
         
-        // Pequeño delay para evitar parpadeo
         setTimeout(() => {
-            // Solo restaurar si no hay otro hover activo
             if (!hoverActivo && !enClick) {
                 restaurarContenido();
+                
+                // Reanudar auto-rotación después de salir del hover
+                resumeAutoRotate();
             }
         }, 100);
         
@@ -156,10 +216,7 @@ iconos.forEach(icono => {
         }
     });
     
-    // Agregar cursor pointer
     icono.style.cursor = 'pointer';
-    
-    // Mejorar la transición del icono
     icono.style.transition = 'all 0.3s ease';
 });
 
@@ -206,20 +263,35 @@ window.addEventListener('load', () => {
             icono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5)';
         }, 100 * (index + 1));
     });
+    
+    // Activar el primer icono después de que aparezcan todos
+    setTimeout(() => {
+        const primerIcono = iconos[0];
+        primerIcono.classList.add('active');
+        primerIcono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5) scale(1.15)';
+        primerIcono.style.boxShadow = '0 4px 20px rgba(82, 52, 165, 0.7)';
+        
+        const claseIcono = Array.from(primerIcono.classList).find(c => c.startsWith('icono-'));
+        iconoActivo = claseIcono;
+        cambiarContenido(primerIcono.classList, true);
+        
+        // Iniciar auto-rotación después de mostrar el primero
+        setTimeout(() => {
+            startAutoRotate();
+        }, 2000);
+    }, 100 * iconos.length + 500);
 });
 
 // ========== ACCESIBILIDAD - NAVEGACIÓN POR TECLADO ==========
 iconos.forEach((icono, index) => {
-    // Hacer los iconos navegables por teclado
     icono.setAttribute('tabindex', '0');
     icono.setAttribute('role', 'button');
     icono.setAttribute('aria-label', `Servicio ${index + 1}`);
     
-    // Permitir activación con Enter o Espacio
     icono.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            enClick = true; // Marcar como click
+            enClick = true;
             icono.click();
             setTimeout(() => {
                 enClick = false;
@@ -227,11 +299,11 @@ iconos.forEach((icono, index) => {
         }
     });
     
-    // Efecto de hover al recibir focus
     icono.addEventListener('focus', () => {
-        if (enClick) return; // No animar si viene de un click por teclado
+        if (enClick) return;
         
         hoverActivo = true;
+        pauseAutoRotate();
         cambiarContenido(icono.classList, true);
         icono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5) scale(1.15)';
         icono.style.boxShadow = '0 4px 15px rgba(82, 52, 165, 0.5)';
@@ -242,10 +314,10 @@ iconos.forEach((icono, index) => {
         setTimeout(() => {
             if (!hoverActivo && !enClick) {
                 restaurarContenido();
+                resumeAutoRotate();
             }
         }, 100);
         
-        // Solo restaurar si no está activo
         if (!icono.classList.contains('active')) {
             icono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5)';
             icono.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
@@ -253,5 +325,5 @@ iconos.forEach((icono, index) => {
     });
 });
 
-console.log('✅ Sistema de círculo interactivo cargado correctamente');
+console.log('✅ Sistema de círculo interactivo con auto-rotación cargado');
 console.log(`📊 ${iconos.length} servicios disponibles`);
