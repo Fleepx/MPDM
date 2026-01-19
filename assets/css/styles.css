@@ -1003,7 +1003,7 @@ section {
 
 .btn-submit:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(3, 224, 51, 0.3);
+    box-shadow: 0 8px 25px rgba(11, 3, 122, 0.603);
 }
 
 .btn-submit:active {
@@ -1256,14 +1256,19 @@ footer {
     padding-top: 3rem;
     padding-bottom: 1rem;
 }
-
-#information {
+#direction {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     justify-content: start;
-    gap: 6rem;
     padding: 0;
     margin: 0;
+}
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 #redes {
     display: flex;
@@ -1282,7 +1287,6 @@ footer {
     all: unset;
     cursor: pointer;
 }
-
 #derechos {
     width: 100%;
     display: flex;
@@ -1350,14 +1354,12 @@ footer {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        align-items:center;
+        align-items:start;
         width: 100%;
-        padding: 5rem 3rem;
         color: wheat;
         gap: 2rem;
     }
     #redes {
-        grid-area: "redes";
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
@@ -1372,16 +1374,20 @@ footer {
         align-items: center;
         flex-direction: column;
     }
-    footer {
+    #contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
         height: 100%;
     }
     .info {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        align-items:center;
-        width: 100%;
-        padding: 5rem 3rem;
+        align-items:start;
+        width: 500px;
         color: wheat;
         gap: 2rem;
     }
@@ -1398,14 +1404,30 @@ footer {
         gap: 0;
     }
     #redes {
-        grid-area: "redes";
         display: flex;
+        justify-content: start;
         flex-direction: row;
         gap: 3rem;
     }
 }
 
 @media (max-width: 640px) {
+    #contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        width: 350px;
+        padding: 2rem 0rem;
+        color: wheat;
+    }
     .contact-section {
         padding: 5rem 0px;
     }
@@ -1431,19 +1453,10 @@ footer {
     .social-icons {
         justify-content: center;
     }
-    .info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-        width: 100%;
-        padding: 2rem 5rem;
-        color: wheat;
-    }
     #redes {
         grid-area: "redes";
         display: flex;
-        justify-content: center;
+        justify-content: start;
         flex-direction: row;
         gap: 15px;
     }
