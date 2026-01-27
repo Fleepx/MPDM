@@ -145,11 +145,12 @@ header.scrolled .tecnologicas {
 /*/////////////////////////////////////////////////////////////////////////*/
 
 #hero {
-    position: start;
-    height: 70vh;
+    position: relative;
+    height: 65vh;
     width: 100%;
     overflow: hidden;
     top: 0;
+    left: 0;
 }
 #hero video {
     position: absolute;
@@ -159,9 +160,10 @@ header.scrolled .tecnologicas {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: -1;
-    transform: translate(-50%, -50%);
     object-fit: cover;
+    object-position: top;
+    z-index: -1;
+    transform: translate(-50%, -42%);
 }
 
 /*//////////////////////////////////////////////////////////////////////////*/

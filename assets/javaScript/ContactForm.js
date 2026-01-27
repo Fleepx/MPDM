@@ -1,84 +1,74 @@
-// ========== FORMULARIO DE CONTACTO - VERSIÓN CORREGIDA SIN SERVICIO ==========
+// ========== FORMULARIO DE CONTACTO - CONFIGURADO PARA PHP BACKEND ==========
 
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
     
-    // Si no existe el formulario, salir
     if (!contactForm) {
-        console.warn('Formulario de contacto no encontrado en esta página');
+        console.warn('⚠️ Formulario de contacto no encontrado');
         return;
     }
     
-    console.log('Formulario de contacto encontrado, inicializando...');
+    console.log('✅ Formulario de contacto inicializado');
 
-    // Función para mostrar mensajes
+    // ========== CONFIGURACIÓN ==========
+    const USE_PHP_BACKEND = true;
+    
     function showMessage(message, type) {
-        console.log(`📢 Mostrando mensaje: ${type} - ${message}`);
+        console.log(`📢 ${type}: ${message}`);
         
-        // Alert nativo (siempre visible)
+        // Alert nativo
         if (type === 'success') {
-            alert(' ' + message);
+            alert('✅ ' + message);
         } else if (type === 'error') {
             alert('❌ ' + message);
         }
         
-        // Mensaje en el formulario (si existe)
+        // Mensaje visual
         if (formMessage) {
             formMessage.textContent = message;
             formMessage.className = `form-message ${type} show`;
             formMessage.style.display = 'block';
             formMessage.style.opacity = '1';
             
-            // Scroll suave al mensaje
             formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             
-            // Ocultar después de 8 segundos
             setTimeout(() => {
                 formMessage.style.opacity = '0';
                 setTimeout(() => {
                     formMessage.style.display = 'none';
-                    formMessage.classList.remove('show');
                 }, 300);
             }, 8000);
         }
     }
 
-    // Función para validar email
     function validarEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
     }
 
-    // Función para validar teléfono chileno (opcional)
     function validarTelefono(telefono) {
         if (!telefono) return true;
         const regex = /^(\+?56)?(\s?)(0?9)(\s?)[98765]\d{7}$/;
         return regex.test(telefono.replace(/\s/g, ''));
     }
 
-    // Event listener del formulario
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        console.log('📝 Formulario enviado, procesando...');
+        console.log('📝 Procesando formulario...');
         
-        // Obtener elementos del formulario
         const nombreEl = document.getElementById('nombre');
         const empresaEl = document.getElementById('empresa');
         const emailEl = document.getElementById('email');
         const telefonoEl = document.getElementById('telefono');
         const mensajeEl = document.getElementById('mensaje');
         
-        // Verificar que los elementos obligatorios existen
         if (!nombreEl || !emailEl || !mensajeEl) {
-            const error = 'Error: Faltan elementos del formulario';
-            console.error('❌', error);
-            showMessage(error, 'error');
+            showMessage('Error en la configuración del formulario', 'error');
             return;
         }
         
-        // Obtener valores del formulario
         const formData = {
             nombre: nombreEl.value.trim(),
             empresa: empresaEl ? empresaEl.value.trim() : '',
@@ -105,53 +95,72 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // Deshabilitar botón mientras se envía
+        // Deshabilitar botón
         const submitButton = contactForm.querySelector('.btn-submit');
-        const buttonText = submitButton ? submitButton.querySelector('.btn-text') : null;
-        const originalText = buttonText ? buttonText.textContent : 'Enviar Mensaje';
+        const buttonText = submitButton?.querySelector('.btn-text');
+        const originalText = buttonText?.textContent || 'Enviar Mensaje';
         
         if (submitButton) {
             submitButton.disabled = true;
             submitButton.style.opacity = '0.7';
-            submitButton.style.cursor = 'not-allowed';
         }
         
         if (buttonText) {
             buttonText.textContent = 'Enviando...';
         }
         
-        console.log('📤 Enviando a FormSubmit...');
-        
         try {
-            // Envío con FormSubmit
-            await enviarConFormSubmit(formData);
+            if (USE_PHP_BACKEND) {
+                console.log('📤 Enviando con PHP backend...');
+                await enviarConPHP(formData);
+            } else {
+                console.log('📤 Enviando con FormSubmit...');
+                await enviarConFormSubmit(formData);
+            }
             
             console.log('✅ Envío exitoso');
-            
-            // Mostrar mensaje de éxito
-            showMessage('¡Mensaje enviado correctamente!', 'success');
-            
-            // Limpiar formulario
+            showMessage('¡Mensaje enviado correctamente! Recibirás una confirmación en tu email.', 'success');
             contactForm.reset();
             
         } catch (error) {
-            console.error('❌ Error al enviar:', error);
+            console.error('❌ Error:', error);
             showMessage('Hubo un error al enviar el mensaje. Por favor intenta nuevamente o escríbenos a contacto@mpdm.cl', 'error');
         } finally {
-            // Rehabilitar botón
             if (submitButton) {
                 submitButton.disabled = false;
                 submitButton.style.opacity = '1';
-                submitButton.style.cursor = 'pointer';
             }
-            
             if (buttonText) {
                 buttonText.textContent = originalText;
             }
         }
     });
 
-    // ========== ENVÍO CON FORMSUBMIT ==========
+    // ========== ENVÍO CON PHP BACKEND ==========
+    async function enviarConPHP(formData) {
+        const response = await fetch('./send-email.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        console.log('📬 Respuesta del servidor:', response.status, response.statusText);
+        
+        const result = await response.json();
+        
+        console.log('📄 Resultado:', result);
+        
+        if (!response.ok || !result.success) {
+            throw new Error(result.message || 'Error al enviar');
+        }
+        
+        return result;
+    }
+
+    // ========== ENVÍO CON FORMSUBMIT (BACKUP) ==========
     async function enviarConFormSubmit(formData) {
         const form = new FormData();
         form.append('name', formData.nombre);
@@ -163,32 +172,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch('https://formsubmit.co/contacto@mpdm.cl', {
             method: 'POST',
             body: form,
-            headers: {
-                'Accept': 'application/json'
-            }
+            headers: { 'Accept': 'application/json' }
         });
         
-        console.log('📬 Respuesta de FormSubmit:', response.status, response.statusText);
-        
         if (!response.ok) {
-            throw new Error(`Error ${response.status}: ${response.statusText}`);
+            throw new Error(`Error ${response.status}`);
         }
         
         return response;
     }
 
-    // ========== ANIMACIONES DE LOS CAMPOS ==========
+    // ========== ANIMACIONES Y VALIDACIONES ==========
     const inputs = document.querySelectorAll('.form-group input, .form-group textarea');
 
     inputs.forEach(input => {
         if (!input) return;
         
         input.addEventListener('input', (e) => {
-            if (e.target.value) {
-                e.target.style.borderColor = 'var(--azulPrincipal, #5234a5)';
-            } else {
-                e.target.style.borderColor = 'rgba(0, 212, 255, 0.2)';
-            }
+            e.target.style.borderColor = e.target.value ? 'var(--azulPrincipal, #5234a5)' : 'rgba(0, 212, 255, 0.2)';
         });
         
         input.addEventListener('focus', (e) => {
@@ -204,10 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== VALIDACIÓN EN TIEMPO REAL ==========
+    // Validación email en tiempo real
     const emailInput = document.getElementById('email');
-    const telefonoInput = document.getElementById('telefono');
-
     if (emailInput) {
         emailInput.addEventListener('blur', () => {
             if (emailInput.value && !validarEmail(emailInput.value)) {
@@ -218,6 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Validación teléfono en tiempo real
+    const telefonoInput = document.getElementById('telefono');
     if (telefonoInput) {
         telefonoInput.addEventListener('blur', () => {
             if (telefonoInput.value && !validarTelefono(telefonoInput.value)) {
@@ -228,18 +229,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ========== CONTADOR DE CARACTERES (EVITAR DUPLICACIÓN) ==========
+    // Contador de caracteres
     const mensajeTextarea = document.getElementById('mensaje');
     const maxLength = 1000;
 
     if (mensajeTextarea) {
-        // Verificar si ya existe un contador
         const existingCounter = mensajeTextarea.parentElement.querySelector('.character-counter');
         
         if (!existingCounter) {
-            // Crear contador solo si no existe
             const counter = document.createElement('div');
-            counter.className = 'character-counter'; // Clase para identificarlo
+            counter.className = 'character-counter';
             counter.style.cssText = `
                 text-align: right;
                 font-size: 0.85rem;
@@ -253,24 +252,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             function updateCounter() {
                 counter.textContent = `${mensajeTextarea.value.length} / ${maxLength} caracteres`;
-                
-                if (mensajeTextarea.value.length > 950) {
-                    counter.style.color = '#ef4444';
-                } else {
-                    counter.style.color = '#999';
-                }
+                counter.style.color = mensajeTextarea.value.length > 950 ? '#ef4444' : '#999';
             }
             
             mensajeTextarea.addEventListener('input', updateCounter);
             mensajeTextarea.setAttribute('maxlength', maxLength);
             updateCounter();
-            
-            console.log('✅ Contador de caracteres inicializado');
-        } else {
-            console.log('ℹ️ Contador de caracteres ya existe');
         }
     }
 
-    console.log('✅ Formulario de contacto inicializado correctamente');
-    console.log('📧 Los mensajes se enviarán a: contacto@mpdm.cl');
+    console.log('✅ Formulario configurado correctamente');
+    console.log('📧 Método: PHP Backend');
+    console.log('📍 Endpoint: ./send-email.php (ruta relativa)');
 });
