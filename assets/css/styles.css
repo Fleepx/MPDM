@@ -145,7 +145,7 @@ header.scrolled .tecnologicas {
 /*/////////////////////////////////////////////////////////////////////////*/
 
 #hero {
-    position: relative;
+    position: start;
     height: 70vh;
     width: 100%;
     overflow: hidden;
@@ -838,6 +838,55 @@ section {
     filter: grayscale(0) contrast(1.2);
 }
 
+/* ========== Alert Message ========== */
+.form-message {
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    display: none; /* Oculto por defecto */
+    animation: slideDown 0.3s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.form-message.show {
+    display: block !important;
+    opacity: 1 !important;
+}
+.form-message.success {
+    display: block;
+    opacity: 1;
+    background: rgba(34, 197, 94, 0.15);
+    border: 2px solid rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+}
+.form-message.error {
+    display: block;
+    opacity: 1;
+    background: rgba(239, 68, 68, 0.15);
+    border: 2px solid rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+}
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#formMessage {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+}
+
 /*/////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////FOOTER//////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////*/
@@ -863,6 +912,8 @@ footer {
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
+    pointer-events: none;
+    margin-bottom: 3rem;
 }
 #separador {
     height: 130px;
@@ -996,11 +1047,11 @@ footer {
     .info {
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
-        align-items:start;
-        width: 500px;
+        justify-content: center;
+        align-items: start;
+        width: 350px;
+        padding: 2rem 0rem;
         color: wheat;
-        gap: 2rem;
     }
     .info .logo-nombre {
         display: flex;
@@ -1208,6 +1259,10 @@ footer {
     }
     .main-message {
         font-size: 1.05rem !important;
+    }
+    .form-message {
+        font-size: 0.9rem;
+        padding: 0.875rem 1rem;
     }
 }
 @media (max-width: 480px) {
