@@ -1,5 +1,3 @@
-// ========== FORMULARIO DE CONTACTO - CONFIGURADO PARA PHP BACKEND ==========
-
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
