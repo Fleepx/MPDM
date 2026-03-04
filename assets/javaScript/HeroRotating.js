@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!topText || !bottomText) return;
         
         // Resetear posición inicial
-        topText.style.transform = 'translateX(-15%)';
+        topText.style.transform = 'translateX(-3rem)';
         topText.style.opacity = '0';
-        bottomText.style.transform = 'translateX(15%)';
+        bottomText.style.transform = 'translateX(3rem)';
         bottomText.style.opacity = '0';
         
         // Animar texto superior: izquierda → derecha

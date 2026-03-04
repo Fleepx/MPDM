@@ -206,7 +206,7 @@ header.scrolled .nav-link:not(.active):hover {
 
 #hero {
     position: relative;
-    height: 80vh;
+    height: 70vh;
     width: 100%;
     overflow: hidden;
     top: 0;
