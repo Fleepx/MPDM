@@ -12,7 +12,7 @@
     --verdePrincipal: #0D8C10;
     --background-gradiant: #0d8c0f65;
     --tituloNosotros: #b3350e;
-	--navbar-height: 100px;
+	--navbar-height: 120px;
 	--navbar-min-height: 60px;
 	--logo-height: 90px;
     --logo-height-section: 20rem;
@@ -32,9 +32,10 @@
 	font-family: 'Roboto', sans-serif;
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.4rem;
 	height: var(--logo-height);
 	transition: padding-top 0.5s ease, padding-bottom 0.5s ease;
+    margin-left: 2.5rem;
 }
 .logo {
 	height: var(--logo-height);
@@ -49,7 +50,7 @@
 	margin: 0;
 	line-height: 1;
 	font-size: var(--nombre-font-size);
-	transition: font-size 0.4s ease;
+	transition: font-size 0.4s ease;    
 }
 .soluciones { 
 	letter-spacing: 4px;
@@ -85,16 +86,15 @@ header  {
 }
 .navbar {  
     transition: height 0.1s ease, box-shadow 0.1s ease;
-
 }
 #navBar {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 	position: fixed;
 	width: 100vw;
-	padding-top: 1rem;
-	padding-bottom: 1rem;
+    height: var(--navbar-height);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 	top: 0;
 	z-index: 1000;
 	transition: height 0.1s ease, box-shadow 0.1s ease;
@@ -102,16 +102,23 @@ header  {
 
 }
 .navbar-toggler {
-    margin-right: 1rem;
+    margin-right: 2rem;
     background: linear-gradient(to bottom, rgb(245, 243, 243), rgba(245, 243, 243, 0.548));
+    height: 3rem;
 }
 
 .collapse {
 	justify-content: end;
+    align-items: center;
 	margin-right: 2rem;
 }
 .nav-link {
 	color: white;
+    padding: 0;
+}
+.nav-link:hover {
+    color: (var(--azulSecundario)) !important;
+    border-radius: 2px;
 }
 header.scrolled #navBar {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
@@ -197,9 +204,6 @@ header.scrolled .nav-link:not(.active):hover {
     opacity: 1;
 }
 
-/* Móvil */
-
-
 /*/////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////HERO.VIDEO/////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////*/
@@ -240,7 +244,7 @@ header.scrolled .nav-link:not(.active):hover {
 
 .hero-text-container {
     position: absolute;
-    top: 50%;
+    bottom: 47%;
     left: 5%;
     transform: translateY(-50%);
     width: 60%;
@@ -308,7 +312,7 @@ header.scrolled .nav-link:not(.active):hover {
     background: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0),
         transparent
     );
     backdrop-filter: blur(5px);
