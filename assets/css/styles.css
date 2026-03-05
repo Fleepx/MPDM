@@ -1163,7 +1163,7 @@ footer {
     justify-content: center;
     width: 100%;
     padding-bottom: 2rem;
-    padding-top: 3rem;
+    padding-top: 6rem;
 }
 #Logo {
     height: 120px;
@@ -1206,7 +1206,6 @@ footer {
     display: flex;
     flex-direction: column;
 }
-
 .class-info {
     display: flex;
     flex-direction: column;
