@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="./assets/css/styles.css?v=3">
 </head>
 <body>
-    <header>
     <!-- Navegation Menu -->
+    <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div id="navBar">
 
@@ -133,7 +133,6 @@
         </div>
     <!-- Services -->
         <section id="services">
-            <div id="shape">
                 <!-- CÍRCULO INTERACTIVO (Desktop - más de 640px) -->
                 <div id="circle" class="desktop-only">
                     <div id="text-circle">
@@ -147,7 +146,6 @@
                     <div class="icono icono-5"><i class="fa-solid fa-link"></i></div>
                     <div class="icono icono-6"><i class="fa-solid fa-network-wired"></i></div>
                 </div>
-
                 <!-- TARJETAS PARA MÓVIL (640px o menos) -->
                 <div class="mobile-cards">
                     <div class="service-card" data-service="desarrollo">
@@ -210,8 +208,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                
         </section>
+        <div class ="divider-container">
+            <div class="wave-divider">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 64 8"
+                    preserveAspectRatio="none"
+                    class="wave-svg">
+                    <path fill="currentColor"
+                        d="M64 8 L64 0 Q32 15.8 0 0 L0 8 Z">
+                    </path>
+                </svg>
+            </div>
+        </div>
     <!-- About Us -->
         <section id="nosotros">
             <div>
@@ -357,11 +367,14 @@
                     <h5>Tecnológicas</h5>
                 </div>
             </div>
-            <div id="contacts">
-                <h3>Contacto</h3>
-                <p>contacto@mpdm.cl</p>
-                <p>soporte@mpdm.cl</p>
-                <p><i class="fa-solid fa-phone fa-2xs"></i> +56 9 8187 2697</p>
+            <div id="cons">
+                <h3 id="con-title">Contacto</h3>
+                <div class="con-info">
+                    <p>contacto@mpdm.cl</p>
+                    <p>soporte@mpdm.cl</p>
+                    <p><i class="fa-solid fa-phone fa-2xs"></i> +56 9 8187 2697</p>
+                </div>
+
             </div>
             <div id="direction">
                 <h3>Dirección</h3>
