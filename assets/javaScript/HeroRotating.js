@@ -23,21 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!topText || !bottomText) return;
         
         // Resetear posición inicial
-        topText.style.transform = 'translateX(-3rem)';
+        topText.style.transform = 'translateY(-3rem)';
         topText.style.opacity = '0';
-        bottomText.style.transform = 'translateX(3rem)';
+        bottomText.style.transform = 'translateY(1rem)';
         bottomText.style.opacity = '0';
         
         // Animar texto superior: izquierda → derecha
         setTimeout(() => {
-            topText.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+            topText.style.transition = 'transform 0.8s ease-out, opacity 0.9s ease-out';
             topText.style.transform = 'translateX(0)';
             topText.style.opacity = '1';
         }, 50);
         
         // Animar texto inferior: derecha → izquierda (con delay)
         setTimeout(() => {
-            bottomText.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+            bottomText.style.transition = 'transform 0.7s ease-out, opacity 0.8s ease-out';
             bottomText.style.transform = 'translateX(0)';
             bottomText.style.opacity = '1';
         }, 250); // 200ms de delay
