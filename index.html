@@ -108,32 +108,44 @@
                 <!-- Slide 1 -->
                 <div class="hero-text-slide active" data-index="0">
                     <h5 class="hero-text-top">Diseñamos tu página web</h5>
-                    <h5 class="hero-text-bottom">a tu medida</h5>
+                    <p class="hero-text-bottom">a tu medida</p>
                 </div>
                 
                 <!-- Slide 2 -->
                 <div class="hero-text-slide" data-index="1">
                     <h5 class="hero-text-top">Gestionamos tu base de datos</h5>
-                    <h5 class="hero-text-bottom">tu negocio al siguiente nivel</h5>
+                    <p class="hero-text-bottom">tu negocio al siguiente nivel</p>
                 </div>
                 
                 <!-- Slide 3 -->
                 <div class="hero-text-slide" data-index="2">
                     <h5 class="hero-text-top">Lanzamos tu APP al mercado</h5>
-                    <h5 class="hero-text-bottom">en cada proyecto que tocamos</h5>
+                    <p class="hero-text-bottom">en cada proyecto que tocamos</p>
                 </div>
                 
                 <!-- Slide 4 -->
                 <div class="hero-text-slide" data-index="3">
                     <h5 class="hero-text-top"></h5>
-                    <h5 class="hero-text-bottom">para resultados reales y medibles</h5>
+                    <p class="hero-text-bottom">para resultados reales y medibles</p>
                 </div>
                 
             </div>
         </div>
+
     <!-- Services -->
         <section id="services">
+
+                <div>
+                    <h1>
+                        <span class="typewriter-text" id="typewriterText"></span>
+                        <span class="typewriter-cursor">|</span>
+                    </h1>
+                </div>
+
+
+            
                 <!-- CÍRCULO INTERACTIVO (Desktop - más de 640px) -->
+                 <div>
                 <div id="circle" class="desktop-only">
                     <div id="text-circle">
                         <h5 id="title-circle"></h5>
@@ -146,6 +158,7 @@
                     <div class="icono icono-5"><i class="fa-solid fa-link"></i></div>
                     <div class="icono icono-6"><i class="fa-solid fa-network-wired"></i></div>
                 </div>
+                                 </div>
                 <!-- TARJETAS PARA MÓVIL (640px o menos) -->
                 <div class="mobile-cards">
                     <div class="service-card" data-service="desarrollo">
@@ -226,34 +239,30 @@
         <section id="us">
             <div id="nosotros">
                 
-            
-            <div>
-                <img
-                    class="logo-nosotros"
-                    src="./assets/imgs/Logo.png"
-                    alt="Logo_MPDM"
-                />
-            </div>
-            <div id="nosotros-text">
-                <div>
-                    <h1>
-                        <span class="typewriter-text" id="typewriterText"></span>
-                        <span class="typewriter-cursor">|</span>
-                    </h1>
-                </div>
-                    <div class="about-description">
-                        <p class="main-message">
-                            En MPDM, <strong>tu problema es nuestro desafío</strong>. Con años de experiencia 
-                            en el campo tecnológico, no solo desarrollamos soluciones, <strong>construimos el 
-                            futuro de tu negocio</strong>. Desde el primer contacto hasta la implementación final, 
-                            trabajamos contigo como <strong>socios estratégicos</strong> que entienden tus necesidades 
-                            únicas. Nuestro compromiso es claro: <strong>tu éxito es nuestra misión</strong>. 
-                            Cuenta con nosotros para llevar tus ideas al siguiente nivel con tecnología de vanguardia 
-                            y un equipo que realmente se preocupa por tus resultados.
-                        </p>
+                <!-- Card 1 -->
+                <div class="nosotros-card">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="./assets/imgs/victor-d.jpg" 
+                            alt="Nosotros - Imagen 1"
+                            class="card-image"
+                        />
                     </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="nosotros-card">
+                    <div class="card-image-wrapper">
+                        <img 
+                            src="./assets/imgs/felipe-s.jpg" 
+                            alt="Nosotros - Imagen 2"
+                            class="card-image"
+                        />
+                    </div>
+                </div>
+                
             </div>
-            </div>
+        </section>
 
     <!-- Icons Language -->
         <section id="code-icons">
@@ -419,6 +428,7 @@
     <script src="./assets/javaScript/NosotrosScroll.js"></script>
     <script src="./assets/javaScript/Typewriter.js"></script>
     <script src="./assets/javaScript/HeroRotating.js"></script>
+    <script src="./assets/javaScript/SnapScroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
             crossorigin="anonymous"></script>
