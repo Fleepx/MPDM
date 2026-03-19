@@ -3,11 +3,11 @@
 
 const serviciosTypewriter = [
     "Desarrollo Web",
-    "Diseño UX/UI",
-    "Infraestructura IT",
-    "Integración",
-    "Consultoría Tech",
-    "Redes"
+    "Diseñamos tus ideas",
+    "Creación de Apps",
+    "Consultoría IT",
+    "Formalizamos tus Redes",
+    "Tu competencia ya está online. ¿Y tú?",
 ];
 
 let servicioIndex = 0;

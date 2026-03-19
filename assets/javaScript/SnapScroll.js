@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Zona de activación (porcentaje de la altura del Hero)
         // 0.8 = Se activa cuando estás al 80% del Hero hacia abajo
-        triggerZoneStart: 0.5,  // ← AJUSTA: Inicio de zona de snap (70% del Hero)
-        triggerZoneEnd: 1.0,    // ← AJUSTA: Fin de zona de snap (30% dentro de Soluciones)
+        triggerZoneStart: 0.02,  // ← AJUSTA: Inicio de zona de snap (70% del Hero)
+        triggerZoneEnd: 0.1,    // ← AJUSTA: Fin de zona de snap (30% dentro de Soluciones)
         
         // Duración de la animación de scroll (milisegundos)
-        scrollDuration: 800,
+        scrollDuration: 1200,
         
         // Tiempo de espera antes de permitir otro snap (milisegundos)
         cooldownTime: 1000,
