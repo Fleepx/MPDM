@@ -12,14 +12,19 @@
     --verdePrincipal: #0D8C10;
     --background-gradiant: #0d8c0f65;
     --tituloNosotros: #b3350e;
+    --background-grey: #f5f5f5;
+
 	--navbar-height: 120px;
 	--navbar-min-height: 60px;
+
 	--logo-height: 90px;
     --logo-height-section: 20rem;
 	--logo-min-height: 60px;
+    
 	--nombre-font-size: 2.5rem;
 	--nombre-min-font-size: 1.5rem;
-    --background-grey: #f5f5f5;
+    --title-size: 4rem;
+
 }
 
 
@@ -636,11 +641,28 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     gap: 3rem;
     padding: 8rem 2rem 5rem 2rem;
     max-width: 100%;
     background-color: var(--background-grey);
 }
+.us-title {
+    font-size: var(--title-size);
+    color: var(--azulPrincipal);
+    font-weight: 600;
+
+    margin-bottom: 6rem;
+
+}
+.us-pics {
+    display: flex;
+    gap: 3rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* ========== CARDS DE IMÁGENES ========== */
 
@@ -868,6 +890,15 @@ section {
     align-items: center;
     padding: 15rem 0rem;
 }
+.contact-title {
+    font-size: var(--title-size);
+    color: var(--azulPrincipal);
+    font-weight: 600;
+
+    margin-bottom: 6rem;
+
+}
+
 .contact-section {
     position: relative;
     padding: 8rem 2rem;
@@ -886,16 +917,7 @@ section {
     text-align: center;
     margin-bottom: 5rem;
 }
-.contact-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    font-weight: 800;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+
 .contact-subtitle {
     font-size: clamp(1rem, 2vw, 1.2rem);
     color: var(--text-secondary);
@@ -907,6 +929,7 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     align-items: start;
+    
 }
 
 /* Form */
@@ -919,6 +942,7 @@ section {
     width: 600px;
     display: flex;
     flex-direction: column;
+    height: 700px;
 }
 .contact-form {
     display: flex;
@@ -1109,7 +1133,7 @@ section {
 /* Google Maps */
 .map-container {
     width: 600px;
-    height: 750px;
+    height: 700px;
     background: var(--card-bg);
     border-radius: 20px;
     border: 2px solid var(--azulPrincipal);

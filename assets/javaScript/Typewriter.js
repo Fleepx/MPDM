@@ -1,6 +1,6 @@
 // ========== TYPEWRITER EFFECT PARA SERVICIOS ==========
 
-// Array de servicios para el typewriter (2-3 palabras máximo)
+
 const serviciosTypewriter = [
     "Desarrollo Web",
     "Diseño UX/UI",
