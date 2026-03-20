@@ -461,8 +461,8 @@ section {
         2px 2px 8px rgba(0, 0, 0, 0.8),
         0 0 20px rgba(0, 0, 0, 0.5);
     font-size: 4rem;
-
 }
+ 
 .typewriter-cursor {
     display: inline-block;
     color: var(--tituloNosotros);
@@ -470,6 +470,52 @@ section {
     font-weight: 800;
     font-size: 4rem;
     margin-bottom: 2rem;
+}
+ 
+/* Tablet */
+@media (max-width: 968px) {
+    .typewriter-text {
+        font-size: 3rem;
+    }
+    
+    .typewriter-cursor {
+        font-size: 3rem;
+    }
+}
+ 
+/* Móvil grande */
+@media (max-width: 640px) {
+    .typewriter-text {
+        font-size: 2.5rem;
+    }
+    
+    .typewriter-cursor {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+ 
+/* Móvil pequeño */
+@media (max-width: 480px) {
+    .typewriter-text {
+        font-size: 2rem;
+    }
+    
+    .typewriter-cursor {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+ 
+/* Móvil muy pequeño */
+@media (max-width: 360px) {
+    .typewriter-text {
+        font-size: 1.5rem;
+    }
+    
+    .typewriter-cursor {
+        font-size: 1.5rem;
+    }
 }
 
 @keyframes blink {
@@ -660,15 +706,16 @@ section {
     max-width: 100%;
     background-color: var(--background-grey);
 }
+ 
 .us-title {
     font-size: var(--title-size);
     color: var(--azulPrincipal);
     font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0  rgba(0, 0, 0, 0.5);
-
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 rgba(0, 0, 0, 0.5);
     margin-bottom: 2rem;
-
+    text-align: center;
 }
+ 
 .us-pics {
     display: flex;
     gap: 3rem;
@@ -676,10 +723,8 @@ section {
     justify-content: center;
     align-items: center;
 }
-
-
-/* ========== CARDS DE IMÁGENES ========== */
-
+ 
+/* Cards de imágenes */
 .nosotros-card {
     flex: 1;
     max-width: 500px;
@@ -687,62 +732,51 @@ section {
     transform: translateY(30px);
     animation: fadeInUp 0.8s ease-out forwards;
 }
-
-/* Animación escalonada para cada card */
+ 
 .nosotros-card:nth-child(1) {
     animation-delay: 0.3s;
 }
-
+ 
 .nosotros-card:nth-child(2) {
     animation-delay: 0.5s;
 }
-
+ 
 @keyframes fadeInUp {
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
-/* ========== WRAPPER DE LA IMAGEN ========== */
-
+ 
 .card-image-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 3 / 4; /* Proporción vertical (3:4) */
+    aspect-ratio: 3 / 4;
     overflow: hidden;
     border-radius: 500px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: all 0.4s ease;
 }
-
+ 
 .card-image-wrapper:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
-
-/* ========== IMAGEN CON EFECTO BLANCO Y NEGRO ========== */
-
+ 
 .card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    
-    /* Efecto blanco y negro (75% desaturado) */
     filter: grayscale(75%) brightness(1.05);
-    
     transition: filter 0.5s ease, transform 0.5s ease;
 }
-
-/* Hover: volver a color + zoom suave */
+ 
 .card-image-wrapper:hover .card-image {
     filter: grayscale(0%) brightness(1);
     transform: scale(1.05);
 }
-
-/* ========== BORDE DECORATIVO (OPCIONAL) ========== */
-
+ 
 .card-image-wrapper::before {
     content: '';
     position: absolute;
@@ -756,14 +790,20 @@ section {
     pointer-events: none;
     z-index: 1;
 }
-
+ 
 .card-image-wrapper:hover::before {
     border-color: var(--azulPrincipal);
-    border-radius: 500px;
 }
-
-/* ========== RESPONSIVE ========== */
-
+ 
+/* ✅ RESPONSIVE - NOSOTROS */
+ 
+/* Tablet grande */
+@media (max-width: 1200px) {
+    .us-title {
+        font-size: calc(var(--title-size) * 0.9);
+    }
+}
+ 
 /* Tablet */
 @media (max-width: 968px) {
     #nosotros {
@@ -771,29 +811,43 @@ section {
         padding: 6rem 1.5rem 4rem 1.5rem;
     }
     
+    .us-title {
+        font-size: calc(var(--title-size) * 0.8);
+        margin-bottom: 1.5rem;
+    }
+    
+    .us-pics {
+        gap: 2rem;
+    }
+    
     .nosotros-card {
         max-width: 400px;
     }
 }
-
-/* Móvil - Cambiar a columna */
+ 
+/* Móvil - COLUMNA (una arriba de otra) */
 @media (max-width: 768px) {
     #nosotros {
-        flex-direction: column;
-        gap: 2.5rem;
         padding: 5rem 1rem 3rem 1rem;
+    }
+    
+    .us-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .us-pics {
+        flex-direction: column; /* ← CARDS EN COLUMNA */
+        gap: 2.5rem;
+        width: 100%;
     }
     
     .nosotros-card {
         width: 100%;
         max-width: 350px;
     }
-    
-    .card-image-wrapper {
-        aspect-ratio: 3 / 4; /* Mantener proporción vertical en móvil */
-    }
 }
-
+ 
 /* Móvil pequeño */
 @media (max-width: 480px) {
     #nosotros {
@@ -801,47 +855,29 @@ section {
         padding: 4rem 1rem 2rem 1rem;
     }
     
+    .us-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .us-pics {
+        gap: 2rem;
+    }
+    
     .nosotros-card {
-        max-width: 300px;
+        max-width: 280px;
     }
 }
-
-/* ========== VARIACIONES DE EFECTO ========== */
-
-/* Variación 1: Más blanco y negro (100% desaturado) */
-.card-image.full-grayscale {
-    filter: grayscale(100%) brightness(1.05);
-}
-
-/* Variación 2: Menos blanco y negro (50% desaturado) */
-.card-image.light-grayscale {
-    filter: grayscale(50%) brightness(1.05);
-}
-
-/* Variación 3: Con sepia en lugar de blanco y negro */
-.card-image.sepia-effect {
-    filter: sepia(70%) brightness(1.05);
-}
-
-.card-image-wrapper:hover .card-image.sepia-effect {
-    filter: sepia(0%) brightness(1);
-}
-
-/* Variación 4: Overlay oscuro que desaparece al hover */
-.card-image-wrapper.dark-overlay::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-
-.card-image-wrapper.dark-overlay:hover::after {
-    opacity: 0;
+ 
+/* Móvil muy pequeño */
+@media (max-width: 360px) {
+    .us-title {
+        font-size: 1.75rem;
+    }
+    
+    .nosotros-card {
+        max-width: 250px;
+    }
 }
 
 /*/////////////////////////////////////////////////////////////////////////*/
@@ -910,10 +946,49 @@ section {
     font-size: var(--title-size);
     color: var(--azulPrincipal);
     font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0  rgba(0, 0, 0, 0.5);
-
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 rgba(0, 0, 0, 0.5);
     margin-bottom: 6rem;
-
+    text-align: center;
+}
+ 
+/* Tablet grande */
+@media (max-width: 1200px) {
+    .contact-title {
+        font-size: calc(var(--title-size) * 0.9);
+        margin-bottom: 5rem;
+    }
+}
+ 
+/* Tablet */
+@media (max-width: 968px) {
+    .contact-title {
+        font-size: calc(var(--title-size) * 0.8);
+        margin-bottom: 4rem;
+    }
+}
+ 
+/* Móvil grande */
+@media (max-width: 640px) {
+    .contact-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+}
+ 
+/* Móvil pequeño */
+@media (max-width: 480px) {
+    .contact-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+}
+ 
+/* Móvil muy pequeño */
+@media (max-width: 360px) {
+    .contact-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .contact-section {
