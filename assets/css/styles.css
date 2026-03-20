@@ -11,11 +11,10 @@
 	--azulPrincipal: #2965C0;
     --verdePrincipal: #0D8C10;
     /*Colores Secundarios*/
-    --azulOscuro: #1E4A8F;
+    --azulOscuro: rgb(30, 74, 143);
     --azulClaro: #5A9DFE;
-    --verdeOscuro: #0A6B0B;
+    --verdeOscuro: #0a6b0c8e;
     --verdeClaro: #3DBE41;
-    --background-gradiant: #0d8c0f65;
     /*Colores de texto y fondos*/
     --Negro: #1A1A1A;
     --Gris-oscuro: #4A4A4A;
@@ -136,7 +135,7 @@ header  {
     padding: 0;
 }
 .nav-link:hover {
-    color: (var(--azulSecundario)) !important;
+    color: (var(--azulOscuro)) !important;
     border-radius: 2px;
     font-weight: 600;
 }
@@ -214,7 +213,7 @@ header.scrolled .tecnologicas {
 
 /* Con scroll */
 header.scrolled .nav-link.active {
-    color: var(--azulSecundario) !important;
+    color: var(--azulOscuro) !important;
     font-weight: 600;
 }
 
@@ -432,10 +431,10 @@ section {
     align-items: center;
     flex-direction: column;
     min-height: 53rem;
+    padding-top: 4rem;
     
-    padding-top: 124px;
 
-    background: linear-gradient(to bottom, var(--background-gradiant) 0%, #ffffff 100%), url(../imgs/fondo-webs.png);
+    background: linear-gradient(to bottom, var(--verdeOscuro) 0%, #ffffff 100%), url(../imgs/fondo-webs.png);
     animation: scroll-adjust linear;
 	animation-timeline: view(y);
     background-size: cover;
@@ -483,7 +482,7 @@ section {
 }
 
 #circle{  
-    background: linear-gradient(to bottom, var(--background-gradiant) 0%, #fcfbfb 100%);
+    background: linear-gradient(to bottom, var(--verdeOscuro) 0%, #fcfbfb 100%);
     width: 454px;
     height: 454px;
     border: 4px solid var(--azulPrincipal); 
@@ -506,7 +505,7 @@ section {
 #title-circle{
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--azulSecundario);
+    color: var(--azulOscuro);
     margin-bottom: 0.5rem;
 
 }
@@ -665,8 +664,9 @@ section {
     font-size: var(--title-size);
     color: var(--azulPrincipal);
     font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0  rgba(0, 0, 0, 0.5);
 
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
 }
 .us-pics {
@@ -902,12 +902,15 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15rem 0rem;
+
+    padding-top: 8rem;
+    padding-bottom: 15rem;
 }
 .contact-title {
     font-size: var(--title-size);
     color: var(--azulPrincipal);
     font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0  rgba(0, 0, 0, 0.5);
 
     margin-bottom: 6rem;
 
@@ -915,7 +918,6 @@ section {
 
 .contact-section {
     position: relative;
-    padding: 8rem 2rem;
     background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
     overflow: hidden;
 }
@@ -929,7 +931,6 @@ section {
 }
 .contact-header {
     text-align: center;
-    margin-bottom: 5rem;
 }
 
 .contact-subtitle {
@@ -1041,7 +1042,7 @@ section {
 
 .btn-submit:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(11, 3, 122, 0.603);
+    box-shadow: 0 8px 25px var(--verdeOscuro);
 }
 
 .btn-submit:active {

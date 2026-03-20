@@ -104,14 +104,14 @@ function startAutoRotate() {
             // Activar el icono actual
             currentIcono.classList.add('active');
             currentIcono.style.transform = 'matrix(1, 0, 0, 1, -42.5, -42.5) scale(1.15)';
-            currentIcono.style.boxShadow = '0 4px 20px rgba(82, 52, 165, 0.7)';
+            currentIcono.style.boxShadow = '0 4px 20px rgba(30, 74, 143, 0.7)';
             
             // Cambiar contenido
             const claseIcono = Array.from(currentIcono.classList).find(c => c.startsWith('icono-'));
             iconoActivo = claseIcono;
             cambiarContenido(currentIcono.classList, true);
         }
-    }, 2000); // Cada 2 segundos
+    }, 4000); // Cada 4 segundos
 }
 
 function stopAutoRotate() {

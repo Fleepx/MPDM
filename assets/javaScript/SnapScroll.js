@@ -1,4 +1,4 @@
-// ========== SCROLL SNAP: HERO ↔ SOLUCIONES (ZONAS MEJORADAS) ==========
+// ========== SCROLL SNAP: HERO ↔ SOLUCIONES (CON OFFSET PARA NAVBAR) ==========
 
 document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero');
@@ -15,15 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollThreshold: 50, // ← AJUSTA ESTE VALOR (30-100 recomendado)
         
         // Zona de activación (porcentaje de la altura del Hero)
-        // 0.8 = Se activa cuando estás al 80% del Hero hacia abajo
-        triggerZoneStart: 0.02,  // ← AJUSTA: Inicio de zona de snap (70% del Hero)
-        triggerZoneEnd: 0.1,    // ← AJUSTA: Fin de zona de snap (30% dentro de Soluciones)
+        triggerZoneStart: 0.02,  // ← Inicio de zona de snap
+        triggerZoneEnd: 0.1,     // ← Fin de zona de snap
+        
+        // ✅ OFFSET PARA NAVBAR (píxeles)
+        navbarOffset: 110, // ← AJUSTA: Espacio para el navbar (110px recomendado)
         
         // Duración de la animación de scroll (milisegundos)
         scrollDuration: 1200,
         
         // Tiempo de espera antes de permitir otro snap (milisegundos)
-        cooldownTime: 1000,
+        cooldownTime: 3000,
         
         // Activar en móvil
         enableOnMobile: true
@@ -35,9 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('✅ Scroll snap Hero ↔ Soluciones activado');
     console.log(`   • Umbral de scroll: ${CONFIG.scrollThreshold}px`);
-    console.log(`   • Zona de activación: ${CONFIG.triggerZoneStart * 100}% - ${CONFIG.triggerZoneEnd * 100}% del Hero`);
+    console.log(`   • Offset navbar: ${CONFIG.navbarOffset}px`);
+    console.log(`   • Zona: ${CONFIG.triggerZoneStart * 100}% - ${CONFIG.triggerZoneEnd * 100}%`);
     
-    // ========== FUNCIÓN PARA SCROLL SUAVE ==========
+    // ========== FUNCIÓN PARA SCROLL SUAVE CON OFFSET ==========
     function smoothScrollTo(targetPosition) {
         isSnapping = true;
         
@@ -53,35 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, CONFIG.scrollDuration + 200);
     }
     
+    // ========== CALCULAR POSICIÓN DE SOLUCIONES CON OFFSET ==========
+    function getSolucionesScrollPosition() {
+        // Posición de Soluciones - offset del navbar
+        return solucionesSection.offsetTop - CONFIG.navbarOffset;
+    }
+    
     // ========== DETECTAR SI ESTAMOS EN LA ZONA DE TRANSICIÓN ==========
     function isInTransitionZone() {
         const scrollPosition = window.scrollY;
         const heroHeight = heroSection.offsetHeight;
         
-        // Zona de transición: desde 70% del Hero hasta 30% de Soluciones
+        // Zona de transición
         const zoneStart = heroHeight * CONFIG.triggerZoneStart;
         const zoneEnd = heroHeight * CONFIG.triggerZoneEnd;
         
         const inZone = scrollPosition >= zoneStart && scrollPosition <= zoneEnd;
         
-        if (inZone) {
-            console.log(`📍 En zona de transición (scroll: ${scrollPosition.toFixed(0)}px, zona: ${zoneStart.toFixed(0)}-${zoneEnd.toFixed(0)}px)`);
-        }
-        
         return inZone;
-    }
-    
-    // ========== DETERMINAR DIRECCIÓN DEL SNAP ==========
-    function getSnapDirection() {
-        const scrollPosition = window.scrollY;
-        const heroHeight = heroSection.offsetHeight;
-        
-        // Si estamos más cerca del Hero (en la mitad superior de la zona)
-        if (scrollPosition < heroHeight) {
-            return 'to-hero';
-        } else {
-            return 'to-soluciones';
-        }
     }
     
     // ========== MANEJAR SCROLL ==========
@@ -104,12 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Solo activar snap si estamos en la zona de transición
             if (isInTransitionZone()) {
-                const solucionesTop = solucionesSection.offsetTop;
+                const solucionesPosition = getSolucionesScrollPosition();
                 
                 // ========== SNAP HACIA ABAJO (Hero → Soluciones) ==========
                 if (scrollDelta > 0) {
-                    console.log('⬇️ Snap: Hero → Soluciones');
-                    smoothScrollTo(solucionesTop);
+                    console.log(`⬇️ Snap: Hero → Soluciones (pos: ${solucionesPosition}px)`);
+                    smoothScrollTo(solucionesPosition);
                 }
                 
                 // ========== SNAP HACIA ARRIBA (Soluciones → Hero) ==========
@@ -134,13 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Solo activar en la zona de transición
         if (isInTransitionZone()) {
-            const solucionesTop = solucionesSection.offsetTop;
+            const solucionesPosition = getSolucionesScrollPosition();
             
             // Scroll hacia abajo
             if (e.deltaY > 0) {
                 e.preventDefault();
-                console.log('🖱️ Wheel ⬇️: Hero → Soluciones');
-                smoothScrollTo(solucionesTop);
+                console.log(`🖱️ Wheel ⬇️: Hero → Soluciones (pos: ${solucionesPosition}px)`);
+                smoothScrollTo(solucionesPosition);
             }
             
             // Scroll hacia arriba
@@ -169,12 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Si el swipe fue significativo y estamos en la zona
         if (Math.abs(touchDelta) > 50 && isInTransitionZone()) {
-            const solucionesTop = solucionesSection.offsetTop;
+            const solucionesPosition = getSolucionesScrollPosition();
             
             // Swipe hacia arriba (scroll down)
             if (touchDelta > 0) {
-                console.log('📱 Touch ⬇️: Hero → Soluciones');
-                smoothScrollTo(solucionesTop);
+                console.log(`📱 Touch ⬇️: Hero → Soluciones (pos: ${solucionesPosition}px)`);
+                smoothScrollTo(solucionesPosition);
             }
             
             // Swipe hacia abajo (scroll up)
@@ -184,42 +176,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }, { passive: true });
-    
-    // ========== DEBUG: Mostrar zona actual ==========
-    // Descomenta esto para ver en qué zona estás mientras haces scroll
-    /*
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        const heroHeight = heroSection.offsetHeight;
-        const percentage = (scrollY / heroHeight * 100).toFixed(0);
-        
-        console.log(`Scroll: ${scrollY.toFixed(0)}px (${percentage}% del Hero) - En zona: ${isInTransitionZone() ? 'SÍ' : 'NO'}`);
-    });
-    */
 });
 
-// ========== GUÍA DE AJUSTE DE ZONAS ==========
+// ========== GUÍA DE AJUSTE DEL OFFSET ==========
 /*
-triggerZoneStart y triggerZoneEnd definen dónde se activa el snap:
+navbarOffset: Espacio en píxeles que se resta a la posición de Soluciones
 
-triggerZoneStart: 0.7 (70% del Hero)
-triggerZoneEnd: 1.3 (130% del Hero = 30% dentro de Soluciones)
+Ejemplos:
+navbarOffset: 0    → Scroll exactamente al inicio de Soluciones
+navbarOffset: 80   → Scroll 80px antes de Soluciones (navbar de 80px)
+navbarOffset: 110  → Scroll 110px antes de Soluciones (navbar + padding)
+navbarOffset: 150  → Scroll 150px antes de Soluciones (más espacio)
 
-Ejemplo con Hero de 1000px de alto:
-- 0.7 = Se activa desde los 700px de scroll (falta 30% para terminar Hero)
-- 1.3 = Se activa hasta los 1300px de scroll (30% dentro de Soluciones)
-
-AJUSTES RECOMENDADOS:
-
-Zona más amplia (más fácil de activar):
-triggerZoneStart: 0.5  (50% del Hero)
-triggerZoneEnd: 1.5    (50% dentro de Soluciones)
-
-Zona más estrecha (justo en la frontera):
-triggerZoneStart: 0.8  (80% del Hero)
-triggerZoneEnd: 1.2    (20% dentro de Soluciones)
-
-Zona solo al final del Hero:
-triggerZoneStart: 0.9  (90% del Hero)
-triggerZoneEnd: 1.1    (10% dentro de Soluciones)
+RECOMENDACIÓN:
+- Si tu navbar mide 80px → usa navbarOffset: 80
+- Si quieres padding extra → usa navbarOffset: 110-120
+- Ajusta según tu diseño específico
 */
